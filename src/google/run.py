@@ -19,17 +19,15 @@ This module prepares and runs the whole system.
 """
 
 import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
 sys.path.append('..')
 import os
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 import pickle
 import argparse
 import logging
-from dataset import BRCDataset
-from vocab import Vocab
-from rc_model import RCModel
+from google.dataset import BRCDataset
+from google.vocab import Vocab
+from google.rc_model import RCModel
 
 
 def parse_args():
@@ -57,7 +55,7 @@ def parse_args():
                                 help='weight decay')
     train_settings.add_argument('--dropout_keep_prob', type=float, default=1,
                                 help='dropout keep rate')
-    train_settings.add_argument('--batch_size', type=int, default=32,
+    train_settings.add_argument('--batch_size', type=int, default=4,
                                 help='train batch size')
     train_settings.add_argument('--epochs', type=int, default=10,
                                 help='train epochs')
@@ -80,23 +78,23 @@ def parse_args():
 
     path_settings = parser.add_argument_group('path settings')
     path_settings.add_argument('--train_files', nargs='+',
-                               default=['../data/demo/trainset/search.train.json'],
+                               default=['../../data/demo/trainset/search.train.json'],
                                help='list of files that contain the preprocessed train data')
     path_settings.add_argument('--dev_files', nargs='+',
-                               default=['../data/demo/devset/search.dev.json'],
+                               default=['../../data/demo/devset/search.dev.json'],
                                help='list of files that contain the preprocessed dev data')
     path_settings.add_argument('--test_files', nargs='+',
-                               default=['../data/demo/testset/search.test.json'],
+                               default=['../../data/demo/testset/search.test.json'],
                                help='list of files that contain the preprocessed test data')
-    path_settings.add_argument('--brc_dir', default='../data/baidu',
+    path_settings.add_argument('--brc_dir', default='../../data/baidu',
                                help='the dir with preprocessed baidu reading comprehension data')
-    path_settings.add_argument('--vocab_dir', default='../data/vocab/',
+    path_settings.add_argument('--vocab_dir', default='../../data/vocab/',
                                help='the dir to save vocabulary')
-    path_settings.add_argument('--model_dir', default='../data/models/',
+    path_settings.add_argument('--model_dir', default='../../data/models/',
                                help='the dir to store models')
-    path_settings.add_argument('--result_dir', default='../data/results/',
+    path_settings.add_argument('--result_dir', default='../../data/results/',
                                help='the dir to output the results')
-    path_settings.add_argument('--summary_dir', default='../data/summary/',
+    path_settings.add_argument('--summary_dir', default='../../data/summary/',
                                help='the dir to write tensorboard summary')
     path_settings.add_argument('--log_path',
                                help='path of the log file. If not set, logs are printed to console')

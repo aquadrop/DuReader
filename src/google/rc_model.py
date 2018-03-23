@@ -29,10 +29,10 @@ import numpy as np
 import tensorflow as tf
 from utils import compute_bleu_rouge
 from utils import normalize
-from layers.basic_rnn import rnn
-from layers.match_layer import MatchLSTMLayer
-from layers.match_layer import AttentionFlowMatchLayer
-from layers.pointer_net import PointerNetDecoder
+from google.layers.basic_rnn import rnn
+from google.layers.match_layer import MatchLSTMLayer
+from google.layers.match_layer import AttentionFlowMatchLayer
+from google.layers.pointer_net import PointerNetDecoder
 
 
 class RCModel(object):
